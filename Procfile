@@ -1,1 +1,2 @@
-web: gunicorn starRating.wsgi --log-file -
+
+web: gunicorn starRating.wsgi  --log-file -
