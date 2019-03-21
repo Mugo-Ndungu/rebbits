@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
+from .forms import *
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -10,14 +10,16 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from django.contrib import messages
-from .models import Profile
+from .models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
 # Create your views here.
-def home(request):
-    return render(request, 'index.html')
 
+
+def home(request):
+    post = Image.objects.all()
+    return render(request, 'index.html', locals())
 
 def register(request):
     if request.method == 'POST':
@@ -62,6 +64,18 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('<h1 style = "color:red;"> Activation link is invalid! </h1>')
 
+def post(request):
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST, request.FILES)
+        if form.is_valid():
+            add = form.save(commit=False)
+            add.save()
+            messages.success(request, f'Project Posted!')
+            return redirect('home')
+
+    else:
+        form = CreatePostForm()
+    return render(request, 'post.html', {'form':form})
 
 def profile(request):
     if request.method == 'POST':

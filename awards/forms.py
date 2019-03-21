@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from .models import Profile
+from .models import *
+
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(
@@ -15,10 +16,10 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2',)
 
 
-# class CreatePostForm(forms.ModelForm):
-#     class Meta:
-#         model = Post
-#         fields = ('author', 'photo', 'caption')
+class CreatePostForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ('title', 'image', 'description', 'link')
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -27,10 +28,11 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('username', 'email',)
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    bio = forms.Textarea()
     class Meta:
         model = Profile
-        fields = ('image',)
+        fields = ('image', 'bio',)

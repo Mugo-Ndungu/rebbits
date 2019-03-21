@@ -5,6 +5,7 @@ html,body{
 }
 body{
     font-family: Quicksand;
+    overflow-x: hidden;
 }
 header{
     width: 100%;
@@ -17,6 +18,14 @@ header{
     color: #fff;
     font-weight: bold;
     font-size: 24px;
+}
+.imgt{
+    width: 300px;
+    height: 300px;
+}
+.col-md-4{
+    margin: 10px auto;
+    text-align: center;
 }
 nav{
     position: fixed;
@@ -38,7 +47,7 @@ nav ul a{
     overflow: hidden;
     color: #fff;
     text-align:center;
-    margin:0;
+    margin-left: 2px;
     padding: 5vh 3vh;
     transition: 1s;
 }nav ul a:hover{
@@ -76,7 +85,7 @@ nav ul li a{
 .rit {
     float: right;
 }
-@media(max-width:1080px){
+@media(max-width:920px){
     .logo{
         position: fixed;
         top: 0;
