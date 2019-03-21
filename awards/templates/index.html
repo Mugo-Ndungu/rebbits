@@ -15,11 +15,11 @@
     {% block content %}
     {{block.super}}
 
-
     <div class="row">
         {% for pic in post %}
         <div class="col-md-4">
-            <a target="_blank" rel="noopener noreferrer" href="{{pic.link}}"><img class="imgt" src="{{pic.image.url}}" alt=""></a>
+            <a target="_blank" rel="noopener noreferrer" href="{{pic.link}}"><img class="imgt" src="{{pic.image.url}}"
+                    alt=""></a>
             <h1>{{pic.title}}</h1>
             <h4>{{pic.description}}</h4>
         </div>
